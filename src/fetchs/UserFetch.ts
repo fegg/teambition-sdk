@@ -2,6 +2,17 @@
 import { Observable } from 'rxjs/Observable'
 import BaseFetch from './BaseFetch'
 import { UserMe } from '../schemas/UserMe'
+import { UserId, TaskId } from '../teambition'
+
+export interface ISimpleUser {
+  _id: UserId
+  avatarUrl: string
+  name: string
+  email?: string
+  title?: string
+  pinyin?: string
+  py?: string
+}
 
 export class UserFetch extends BaseFetch {
 
@@ -24,6 +35,26 @@ export class UserFetch extends BaseFetch {
       phone: phone,
       vcode: vcode
     })
+  }
+
+  getRecentUsers(): Observable<ISimpleUser[]> {
+    return this.fetch.get('rooms/recent-users', {
+      isWithInbox: true
+    })
+  }
+
+  getRecommendedUsers(): Observable<ISimpleUser[]> {
+    return this.fetch.get('rooms/recommend-users', {
+      isWithInbox: true
+    })
+  }
+
+  getFreeTaskFollowers(taskId: TaskId, query?: any): Observable<ISimpleUser[]> {
+    return this.fetch.get(`tasks/${taskId}/inbox/involvers`, query)
+  }
+
+  getAllProjectMembers(query?: any): Observable<ISimpleUser[]> {
+    return this.fetch.get('projects/members', query)
   }
 }
 
