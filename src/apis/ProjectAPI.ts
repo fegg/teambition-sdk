@@ -28,7 +28,7 @@ import {
   ProjectId,
   TaskId,
   OrganizationId,
-  IdOfMember,
+  UserId,
   RoleId
 } from '../teambition'
 
@@ -214,7 +214,7 @@ export class ProjectAPI {
       )
   }
 
-  quit(_id: ProjectId, _ownerId?: IdOfMember): Observable<void> {
+  quit(_id: ProjectId, _ownerId?: UserId): Observable<void> {
     return ProjectFetch.quit(_id, _ownerId)
       .concatMap(x =>
         ProjectModel.delete(<string>_id)
@@ -225,7 +225,7 @@ export class ProjectAPI {
     return ProjectFetch.getRecommendMembers(_id, querys)
   }
 
-  resendInvitation(_id: ProjectId, userId: IdOfMember): Observable<{}> {
+  resendInvitation(_id: ProjectId, userId: UserId): Observable<{}> {
     return ProjectFetch.resendInvitation(_id, userId)
   }
 
