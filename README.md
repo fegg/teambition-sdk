@@ -106,7 +106,7 @@ import 'rxjs/add/operator/distinctUntilKeyChanged'
 import { TasksAPI } from 'teambition-sdk'
 import { Input } from '@angular/core'
 
-@component({
+@Component({
   selector: 'task-detail',
   template: `
     <div> {{ task$?.name | async }} </div>
