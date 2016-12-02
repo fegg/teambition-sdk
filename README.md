@@ -104,7 +104,7 @@ class TaskView extends Backbone.View {
 ```ts
 import 'rxjs/add/operator/distinctUntilKeyChanged'
 import { TasksAPI } from 'teambition-sdk'
-import { Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'task-detail',
@@ -142,11 +142,11 @@ export default class TaskView {
 import 'rxjs/add/operator/distinctUntilKeyChanged'
 import 'rxjs/add/operator/distinctUntilChanged'
 import { PermissionAPI, TasksAPI, ProjectAPI } from 'teambition-sdk'
-import { Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import * as moment from 'moment'
 import { errorHandler } from '../errorHandler'
 
-@component({
+@Component({
   selector: 'task-detail',
   template: `
     <div [ngClass]="{'active': permission$.canEdit | async}"></div>
